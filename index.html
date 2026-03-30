@@ -1,198 +1,1494 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cão Educado em 7 Dias | O Guia Definitivo</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .cta-pulse {
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
-        }
-        .gradient-bg {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Quiz Interativo - Posições Enlouquecedoras</title>
+  <style>
+    :root {
+      --bg: #03091d;
+      --bg-soft: #08112b;
+      --card: rgba(14, 8, 27, 0.94);
+      --card-2: rgba(19, 11, 34, 0.9);
+      --primary: #ff2a2a;
+      --primary-2: #ff4f5e;
+      --accent: #ffcc66;
+      --text: #ffffff;
+      --muted: #c8cbe1;
+      --muted-2: #a9afcb;
+      --line: rgba(255, 48, 64, 0.45);
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+      --radius: 22px;
+      --radius-sm: 16px;
+      --success: #17d879;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background:
+        radial-gradient(circle at top, rgba(255, 42, 42, 0.10), transparent 30%),
+        linear-gradient(180deg, #040a1b 0%, #010615 100%);
+      color: var(--text);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      min-height: 100%;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .phone {
+      width: 100%;
+      max-width: 430px;
+      min-height: 100vh;
+      position: relative;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 49, 73, 0.12), transparent 32%),
+        linear-gradient(180deg, #02091d 0%, #000815 100%);
+      overflow: hidden;
+    }
+
+    .glow {
+      position: absolute;
+      inset: -20% auto auto 50%;
+      width: 260px;
+      height: 260px;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, rgba(255, 60, 60, 0.22), transparent 60%);
+      filter: blur(18px);
+      pointer-events: none;
+    }
+
+    .shell {
+      padding: 24px 18px 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand {
+      text-align: center;
+      margin-top: 4px;
+      margin-bottom: 18px;
+    }
+
+    .heart {
+      font-size: 44px;
+      line-height: 1;
+      color: var(--primary);
+      filter: drop-shadow(0 6px 18px rgba(255, 42, 42, 0.25));
+      margin-bottom: -6px;
+    }
+
+    .brand small {
+      display: block;
+      color: #eef0ff;
+      font-family: Georgia, 'Times New Roman', serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1.05;
+      font-size: 13px;
+    }
+
+    .progress-wrap {
+      margin: 10px 6px 28px;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+      min-height: 18px;
+    }
+
+    .progress {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 62, 82, 0.14);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress > span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #ff3e35 0%, #ff1f4f 100%);
+      border-radius: inherit;
+      transition: width 0.35s ease;
+      box-shadow: 0 0 16px rgba(255, 49, 73, 0.45);
+    }
+
+    .screen {
+      display: none;
+      animation: fadeUp 0.35s ease;
+      min-height: calc(100vh - 132px);
+      align-items: center;
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+    .stack {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      justify-content: center;
+    }
+
+    .hero-card,
+    .content-card,
+    .review-card,
+    .result-card,
+    .offer-card {
+      background: linear-gradient(180deg, rgba(14, 18, 41, 0.96), rgba(8, 9, 24, 0.98));
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-visual {
+      position: relative;
+      height: 430px;
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.25)),
+        radial-gradient(circle at 50% 20%, rgba(255, 102, 102, 0.18), transparent 30%),
+        linear-gradient(135deg, #362131 0%, #16131c 35%, #0e1627 100%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .hero-portrait {
+      width: 100%;
+      height: 100%;
+      border-radius: 24px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.10), rgba(0,0,0,0.35)),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 1000"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="%23120d18"/><stop offset="50%" stop-color="%23372129"/><stop offset="100%" stop-color="%23070e1d"/></linearGradient></defs><rect width="700" height="1000" fill="url(%23g)"/><ellipse cx="350" cy="860" rx="240" ry="55" fill="rgba(0,0,0,.35)"/><ellipse cx="350" cy="430" rx="155" ry="220" fill="%23f2c7b7"/><ellipse cx="350" cy="380" rx="132" ry="160" fill="%23f5d1c2"/><path d="M215 330c35-120 235-155 284 18 18 62 12 159 4 204-10 59-35 134-153 134-89 0-143-61-161-145-14-61-18-141 26-211Z" fill="%23f4d4c9"/><path d="M204 318c14-87 93-163 191-163 127 0 211 100 199 213-7 69-37 90-71 95-28-32-61-57-101-69-85-25-135 16-165 47-33-15-61-49-53-123Z" fill="%23661b18"/><path d="M240 708c13-78 74-114 111-114 60 0 112 35 123 114l25 240H212l28-240Z" fill="%23ca1524"/><path d="M215 718c53-10 80-21 128-21 55 0 95 11 141 25l-11 226H226l-11-230Z" fill="%23da1726"/><path d="M307 481c13 11 26 17 43 17 18 0 32-7 44-18" stroke="%23b33639" stroke-width="7" stroke-linecap="round" fill="none"/><ellipse cx="296" cy="410" rx="17" ry="9" fill="%2331191b"/><ellipse cx="406" cy="410" rx="17" ry="9" fill="%2331191b"/><path d="M321 548c20 9 58 10 82-2" stroke="%23b9182b" stroke-width="8" stroke-linecap="round" fill="none"/><path d="M185 348c58-77 87-129 171-142 89-15 163 29 209 92-24-104-96-173-217-173-102 0-180 76-190 178 0 15 3 30 27 45Z" fill="%23641718"/><path d="M230 723c32-55 56-74 77-90 17-13 31-13 44 0 17 18 20 43 20 89l-141 1Z" fill="%23b10f22"/><path d="M376 721c4-45 6-71 26-88 15-13 28-13 43-2 25 18 50 42 81 90H376Z" fill="%23b10f22"/><path d="M177 318c17-84 93-181 226-181 77 0 146 36 190 103-22-18-57-39-101-47-47-9-96-1-142 18-53 23-113 65-173 107Z" fill="%235f1717"/><path d="M263 392c8-15 31-24 57-21" stroke="%2362181b" stroke-width="6" stroke-linecap="round"/><path d="M381 371c26-3 48 5 57 21" stroke="%2362181b" stroke-width="6" stroke-linecap="round"/></svg>') center/cover no-repeat;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .hero-tag {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 18px;
+      background: linear-gradient(180deg, rgba(167, 15, 28, 0.96), rgba(136, 11, 23, 0.98));
+      color: white;
+      border-radius: 18px 18px 4px 4px;
+      text-align: center;
+      padding: 16px 14px;
+      font-weight: 900;
+      line-height: 1.15;
+      font-size: 21px;
+      text-transform: uppercase;
+      box-shadow: 0 18px 30px rgba(104, 0, 0, 0.35);
+    }
+
+    .hero-copy {
+      padding: 20px 18px 6px;
+    }
+
+    h1, h2, h3, p {
+      margin: 0;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .headline {
+      font-size: 33px;
+      line-height: 1.05;
+      font-weight: 900;
+      letter-spacing: -0.9px;
+    }
+
+    .headline .hot {
+      color: var(--primary-2);
+    }
+
+    .subheadline {
+      font-size: 17px;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .bullets {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .bullet {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 10px;
+      align-items: flex-start;
+      color: #f4f6ff;
+      font-size: 17px;
+      line-height: 1.38;
+    }
+
+    .bullet span:first-child {
+      font-size: 18px;
+      transform: translateY(1px);
+    }
+
+    .cta {
+      appearance: none;
+      border: 0;
+      width: 100%;
+      border-radius: 18px;
+      padding: 18px 18px;
+      background: linear-gradient(180deg, #ff3737 0%, #ef2222 100%);
+      color: #fff;
+      font-weight: 900;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 14px 28px rgba(220, 20, 43, 0.38);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    }
+
+    .cta:active { transform: translateY(1px) scale(0.996); }
+    .cta[disabled] { opacity: 0.55; cursor: not-allowed; box-shadow: none; }
+
+    .content-card {
+      padding: 22px 16px;
+    }
+
+    .question-top {
+      text-align: center;
+      display: grid;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .question-top .mini {
+      font-size: 16px;
+      line-height: 1.35;
+      color: #eef1ff;
+    }
+
+    .question-top h2 {
+      font-size: 24px;
+      line-height: 1.12;
+      font-weight: 900;
+      letter-spacing: -0.6px;
+    }
+
+    .question-top .hint {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+    }
+
+    .option {
+      width: 100%;
+      text-align: left;
+      border: 1.4px solid var(--line);
+      background: linear-gradient(180deg, rgba(35, 9, 28, 0.9), rgba(19, 7, 24, 0.96));
+      color: white;
+      border-radius: 18px;
+      padding: 16px 16px;
+      display: grid;
+      grid-template-columns: 1fr 24px;
+      gap: 10px;
+      align-items: center;
+      cursor: pointer;
+      transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      min-height: 72px;
+    }
+
+    .option:hover { transform: translateY(-1px); }
+
+    .option .label {
+      font-size: 16px;
+      line-height: 1.28;
+      font-weight: 750;
+    }
+
+    .option .check {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      border: 1.8px solid rgba(255, 74, 92, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      flex-shrink: 0;
+      background: transparent;
+      transition: all 0.2s ease;
+    }
+
+    .option.selected {
+      border-color: rgba(255, 93, 109, 0.95);
+      background: linear-gradient(180deg, rgba(53, 10, 32, 0.96), rgba(31, 7, 29, 0.98));
+      box-shadow: 0 12px 30px rgba(79, 2, 24, 0.3);
+    }
+
+    .option.selected .check {
+      background: linear-gradient(180deg, #ff3b45, #da1f2d);
+      box-shadow: 0 0 0 4px rgba(255, 54, 74, 0.10);
+    }
+
+    .continue-bar {
+      margin-top: 18px;
+    }
+
+    .bio-card {
+      padding: 22px 16px;
+      background: linear-gradient(180deg, rgba(7, 11, 28, 0.98), rgba(8, 8, 19, 0.98));
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.04);
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 14px;
+    }
+
+    .bio-box {
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 14px;
+      align-items: center;
+      background: rgba(255,255,255,0.03);
+      border-radius: 20px;
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .avatar {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      background:
+        linear-gradient(135deg, rgba(255, 77, 98, 0.95), rgba(255, 187, 63, 0.95));
+      padding: 3px;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.35);
+    }
+
+    .avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background:
+        radial-gradient(circle at 50% 28%, rgba(255,255,255,0.14), transparent 24%),
+        linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.35)),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="%23351828"/><stop offset="100%" stop-color="%23060d1e"/></linearGradient></defs><rect width="400" height="400" fill="url(%23g)"/><ellipse cx="200" cy="370" rx="90" ry="30" fill="rgba(0,0,0,.34)"/><ellipse cx="200" cy="190" rx="82" ry="112" fill="%23f4d1c2"/><path d="M122 178c11-56 58-102 119-102 69 0 118 48 116 120-2 55-21 101-39 122-20 23-45 37-78 37-31 0-57-11-77-32-27-28-47-88-41-145Z" fill="%23f6d8cd"/><path d="M106 175c5-72 62-127 132-127 67 0 121 44 135 108-34-34-79-53-135-51-45 2-88 24-132 70Z" fill="%23631a19"/><path d="M165 204c9-14 27-20 48-17" stroke="%2369191b" stroke-width="6" stroke-linecap="round"/><path d="M241 186c20-3 37 3 47 17" stroke="%2369191b" stroke-width="6" stroke-linecap="round"/><ellipse cx="180" cy="223" rx="11" ry="7" fill="%23311b1d"/><ellipse cx="264" cy="223" rx="11" ry="7" fill="%23311b1d"/><path d="M191 286c18 8 49 7 67-2" stroke="%23be1d2f" stroke-width="8" stroke-linecap="round" fill="none"/><path d="M130 108c31-54 91-84 150-78 33 4 65 18 90 43-18-48-70-86-142-86-81 0-153 50-167 121 14 4 38 4 69 0Z" fill="%23701c1f"/><path d="M162 314c19 49 56 79 56 79s40-23 59-77c-18 12-40 19-59 19s-38-7-56-21Z" fill="%23d21c2d"/></svg>') center/cover no-repeat;
+      border: 2px solid rgba(8, 8, 20, 0.8);
+    }
+
+    .bio-text h3 {
+      font-size: 24px;
+      line-height: 1.1;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .bio-text p {
+      font-size: 16px;
+      line-height: 1.45;
+      color: var(--muted);
+      margin-bottom: 9px;
+    }
+
+    .social-box {
+      background: linear-gradient(180deg, rgba(17, 18, 30, 0.95), rgba(10, 10, 16, 0.98));
+      border-radius: 18px;
+      padding: 12px;
+      border: 1px solid rgba(255,255,255,0.04);
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .social-stats {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .review-card,
+    .result-card,
+    .offer-card {
+      padding: 22px 16px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .testi {
+      display: grid;
+      gap: 12px;
+    }
+
+    .testi-item {
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 18px;
+      padding: 14px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .stars { color: #ffd34f; letter-spacing: 1px; font-size: 15px; }
+
+    .name {
+      font-weight: 900;
+      margin-top: 4px;
+      font-size: 17px;
+    }
+
+    .handle {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .quote {
+      font-size: 16px;
+      line-height: 1.45;
+      color: #f5f7ff;
+    }
+
+    .image-panel {
+      height: 240px;
+      border-radius: 24px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.38)),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="%2328171e"/><stop offset="35%" stop-color="%23141116"/><stop offset="100%" stop-color="%2308111d"/></linearGradient></defs><rect width="700" height="420" fill="url(%23g)"/><ellipse cx="250" cy="360" rx="180" ry="34" fill="rgba(0,0,0,.3)"/><path d="M156 345c40-52 93-90 169-95 79-5 159 29 209 89l-7 19H150l6-13Z" fill="%23d9192d"/><ellipse cx="277" cy="180" rx="60" ry="82" fill="%23f4d1c4"/><path d="M214 176c8-55 50-103 108-103 60 0 104 44 108 106 5 72-31 136-108 136s-117-69-108-139Z" fill="%23f6d8cd"/><path d="M195 181c10-76 69-132 136-132 76 0 140 49 151 120-25-23-53-40-91-45-75-10-136 20-196 57Z" fill="%23671919"/><path d="M248 182c29 44 56 78 59 141h-79c-8-57 3-101 20-141Z" fill="%23d9192d"/><path d="M308 183c18 44 24 86 21 140h89c4-70-9-112-31-141-21-27-65-28-79 1Z" fill="%23ca1527"/><path d="M181 321c42-14 83-20 126-20 80 0 155 19 226 46-5-17-10-34-20-49-37-19-111-39-204-38-62 1-119 16-163 40-11 8-19 14-26 21 21 1 42 1 61 0Z" fill="%23ad1021"/></svg>') center/cover no-repeat;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .mini-strip {
+      display: inline-block;
+      background: linear-gradient(180deg, #ff3a3a, #d31d2c);
+      padding: 8px 10px;
+      border-radius: 8px 8px 2px 2px;
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .impact {
+      font-size: 19px;
+      line-height: 1.15;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .impact strong { color: var(--primary-2); }
+
+    .soft-card {
+      background: #efd8d8;
+      color: #8c1b1b;
+      border-radius: 18px;
+      padding: 18px 16px;
+      font-size: 18px;
+      line-height: 1.45;
+      font-style: italic;
+    }
+
+    .list-checks {
+      display: grid;
+      gap: 11px;
+    }
+
+    .check-row {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 17px;
+      line-height: 1.4;
+    }
+
+    .check-row span:first-child {
+      color: var(--success);
+      font-weight: 900;
+    }
+
+    .analysis {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius: 20px;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,0.05);
+      display: grid;
+      gap: 10px;
+    }
+
+    .analysis .label {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .analysis h3 {
+      font-size: 26px;
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: -0.7px;
+    }
+
+    .analysis p {
+      font-size: 17px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .score-box {
+      background: rgba(255,255,255,0.03);
+      border-radius: 18px;
+      padding: 12px 10px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .score-box .n {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--primary-2);
+    }
+
+    .score-box .t {
+      margin-top: 4px;
+      font-size: 12px;
+      line-height: 1.2;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .price-box {
+      background: #f1d7d7;
+      color: #a31f1f;
+      border-radius: 22px;
+      padding: 18px 16px;
+      text-align: center;
+    }
+
+    .price-top {
+      font-size: 14px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .old-price {
+      font-size: 22px;
+      color: #d11e2e;
+      text-decoration: line-through;
+      margin-top: 8px;
+      font-weight: 900;
+    }
+
+    .new-price-title {
+      font-size: 19px;
+      line-height: 1.25;
+      font-weight: 900;
+      color: white;
+      text-align: center;
+    }
+
+    .highlight-green {
+      display: inline-block;
+      background: linear-gradient(180deg, #1ecf67, #18a852);
+      color: #ffffff;
+      padding: 3px 7px;
+      border-radius: 6px;
+      font-weight: 900;
+      box-shadow: 0 8px 18px rgba(22, 169, 84, 0.3);
+    }
+
+    .emphasis {
+      background: linear-gradient(transparent 62%, #f9e24a 62%);
+      color: #111;
+      font-weight: 900;
+      display: inline;
+    }
+
+    .bonus-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 4px;
+    }
+
+    .bonus-item {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .bonus-item strong {
+      display: block;
+      font-size: 18px;
+      line-height: 1.25;
+      margin-bottom: 4px;
+    }
+
+    .bonus-item p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.42;
+    }
+
+    .danger-box {
+      background: #efd7d7;
+      color: #af1c24;
+      border-radius: 20px;
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .danger-box h3 {
+      font-size: 20px;
+      line-height: 1.15;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .danger-box p {
+      font-size: 17px;
+      line-height: 1.45;
+      color: #9f2026;
+    }
+
+    .guarantee {
+      display: grid;
+      justify-items: center;
+      gap: 16px;
+      text-align: center;
+    }
+
+    .seal {
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #ffe596, #f7c44d 38%, #b87f16 70%, #7e5205 100%);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+      border: 8px solid rgba(255, 241, 189, 0.55);
+      position: relative;
+    }
+
+    .seal::before {
+      content: '';
+      position: absolute;
+      inset: 18px;
+      border-radius: 50%;
+      border: 2px dashed rgba(56, 35, 0, 0.45);
+    }
+
+    .seal-inner {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 30%, #202020, #0d0d0d 72%);
+      color: #f4c14a;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: 1px;
+      box-shadow: inset 0 0 18px rgba(255,255,255,0.08);
+    }
+
+    .seal-inner span {
+      display: block;
+      font-size: 54px;
+      margin: 4px 0;
+    }
+
+    .final-note {
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .footer-space { height: 6px; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 380px) {
+      .headline { font-size: 29px; }
+      .question-top h2 { font-size: 22px; }
+      .option .label, .bullet, .quote, .subheadline, .analysis p, .check-row, .bonus-item p, .bio-text p { font-size: 15px; }
+      .cta { font-size: 18px; }
+      .hero-tag { font-size: 18px; }
+    }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-900 overflow-x-hidden">
+<body>
+  <div class="phone">
+    <div class="glow"></div>
+    <div class="shell">
+      <div class="brand">
+        <div class="heart">❤</div>
+        <small>Posições</small>
+        <small>Enlouquecedoras</small>
+      </div>
 
-    <!-- Header / Barra de Urgência -->
-    <div class="bg-red-600 text-white text-center py-2 text-sm font-bold uppercase tracking-widest px-4">
-        Oferta exclusiva: 50% de desconto termina em <span id="timer">15:00</span>
-    </div>
-
-    <!-- Hero Section -->
-    <section class="gradient-bg text-white pt-12 pb-20 px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
-                Transforme seu Cão Bagunceiro em um Companheiro <span class="text-yellow-400">Totalmente Obediente</span> em apenas 7 dias!
-            </h1>
-            <p class="text-lg md:text-xl mb-8 opacity-90">
-                O método passo a passo utilizado por especialistas para doutrinar qualquer raça, sem precisar de castigos ou violência.
-            </p>
-
-            <!-- Video Placeholder / Imagem Principal -->
-            <div class="relative max-w-2xl mx-auto rounded-2xl shadow-2xl overflow-hidden bg-black aspect-video flex items-center justify-center border-4 border-white/20">
-                <div class="text-center p-4">
-                    <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 cursor-pointer hover:bg-white/30 transition">
-                        <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M6.3 2.841A1.5 1.5 0 004 4.11v11.78a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.841z"/></svg>
-                    </div>
-                    <p class="text-sm uppercase font-bold tracking-tighter">Assista ao vídeo para conhecer o segredo</p>
-                </div>
-            </div>
-
-            <!-- Botão CTA Principal -->
-            <div class="mt-10">
-                <a href="#checkout" class="cta-pulse inline-block bg-green-500 hover:bg-green-600 text-white text-xl md:text-2xl font-bold py-5 px-10 rounded-full transition transform">
-                    QUERO MEU CÃO OBEDIENTE AGORA!
-                </a>
-                <p class="mt-3 text-sm opacity-80 italic">Acesso imediato após o pagamento</p>
-            </div>
+      <div class="progress-wrap">
+        <div class="progress-meta">
+          <span id="progressLabel"></span>
+          <span id="progressValue"></span>
         </div>
-    </section>
+        <div class="progress"><span id="progressBar"></span></div>
+      </div>
 
-    <!-- Problemas -->
-    <section class="py-16 px-6 bg-white">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-2xl md:text-3xl font-bold text-center mb-12">Você se identifica com algum desses problemas?</h2>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="flex items-start space-x-4 p-4 bg-gray-50 rounded-xl">
-                    <span class="text-red-500 text-2xl">✕</span>
-                    <p class="font-medium">Seu cachorro não para de latir para visitas ou outros cães.</p>
-                </div>
-                <div class="flex items-start space-x-4 p-4 bg-gray-50 rounded-xl">
-                    <span class="text-red-500 text-2xl">✕</span>
-                    <p class="font-medium">Ele faz xixi e cocô no lugar errado pela casa toda.</p>
-                </div>
-                <div class="flex items-start space-x-4 p-4 bg-gray-50 rounded-xl">
-                    <span class="text-red-500 text-2xl">✕</span>
-                    <p class="font-medium">Ele pula nas pessoas e morde objetos (ou mãos) por agitação.</p>
-                </div>
-                <div class="flex items-start space-x-4 p-4 bg-gray-50 rounded-xl">
-                    <span class="text-red-500 text-2xl">✕</span>
-                    <p class="font-medium">Você sente que ele não te respeita e ignora seus comandos.</p>
-                </div>
+      <section class="screen active" data-step="0">
+        <div class="stack">
+          <div class="hero-card">
+            <div class="hero-visual">
+              <div class="hero-portrait">
+                <div class="hero-tag">O guia que desperta presença, magnetismo e desejo memorável</div>
+              </div>
             </div>
+            <div class="hero-copy">
+              <div class="eyebrow">Quiz magnético de 2 minutos</div>
+              <h1 class="headline">Descubra o que está <span class="hot">bloqueando sua presença íntima</span> — e como virar a mulher que marca.</h1>
+              <div class="bullets">
+                <div class="bullet"><span>💋</span><span>Entenda por que muitos encontros até começam bem... mas não deixam memória emocional.</span></div>
+                <div class="bullet"><span>🔥</span><span>Receba um diagnóstico persuasivo baseado no seu momento, confiança e energia de atração.</span></div>
+                <div class="bullet"><span>✨</span><span>Veja se você está a um ajuste de distância de se tornar impossível de ignorar.</span></div>
+              </div>
+            </div>
+          </div>
+          <button class="cta js-next">Começar agora</button>
         </div>
-    </section>
+      </section>
 
-    <!-- O que você vai aprender -->
-    <section class="py-16 px-6 bg-blue-50">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-4 text-blue-900">O que você vai dominar em 7 Dias:</h2>
-            <p class="text-center text-gray-600 mb-12 italic">Módulos simplificados para quem não tem tempo a perder.</p>
-            
-            <div class="space-y-4">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-8 border-blue-500 flex items-center justify-between">
-                    <div>
-                        <h3 class="font-bold text-lg">Dia 1-2: A Psicologia Canina</h3>
-                        <p class="text-gray-600">Entenda como o seu cão pensa e como estabelecer liderança imediata.</p>
-                    </div>
-                    <span class="hidden md:block text-blue-100 font-bold text-4xl">01</span>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-8 border-blue-500 flex items-center justify-between">
-                    <div>
-                        <h3 class="font-bold text-lg">Dia 3-4: Comandos Básicos Infalíveis</h3>
-                        <p class="text-gray-600">Senta, Deita e Fica. O controle absoluto sobre o comportamento dele.</p>
-                    </div>
-                    <span class="hidden md:block text-blue-100 font-bold text-4xl">02</span>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-8 border-blue-500 flex items-center justify-between">
-                    <div>
-                        <h3 class="font-bold text-lg">Dia 5-6: O Fim da Sujeira e Barulho</h3>
-                        <p class="text-gray-600">Técnicas avançadas para o banheiro no lugar certo e controle de latidos.</p>
-                    </div>
-                    <span class="hidden md:block text-blue-100 font-bold text-4xl">03</span>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-8 border-blue-500 flex items-center justify-between">
-                    <div>
-                        <h3 class="font-bold text-lg">Dia 7: Socialização e Passeio</h3>
-                        <p class="text-gray-600">Como passear sem ser puxado e como ele deve agir com estranhos.</p>
-                    </div>
-                    <span class="hidden md:block text-blue-100 font-bold text-4xl">04</span>
-                </div>
+      <section class="screen" data-step="1">
+        <div class="stack">
+          <div class="bio-card">
+            <div class="question-top" style="margin-bottom:0; text-align:left;">
+              <div class="mini">Conheça sua instrutora:</div>
+              <h2 style="font-size:32px;">Vanessa de Oliveira</h2>
             </div>
+            <p class="subheadline">Criadora do método <strong style="color:#fff;">Posições Enlouquecedoras</strong>, com foco em presença feminina, autoconfiança, química e intensidade memorável.</p>
+            <div class="bio-box">
+              <div class="avatar"><div class="avatar-inner"></div></div>
+              <div class="bio-text">
+                <p><strong style="color:#fff;">Especialista em sexualidade feminina e performance emocional</strong>, com anos de experiência ajudando mulheres a sair da insegurança e entrar em uma versão mais segura, intensa e marcante.</p>
+              </div>
+            </div>
+            <div class="social-box">
+              <div class="avatar"><div class="avatar-inner"></div></div>
+              <div>
+                <div style="font-weight:900; font-size:18px;">VANESSA DE OLIVEIRA · Mulher Magnética</div>
+                <div class="social-stats">
+                  <span><strong style="color:#fff;">4.765</strong> posts</span>
+                  <span><strong style="color:#fff;">1 mi</strong> seguidores</span>
+                  <span><strong style="color:#fff;">1.844</strong> seguindo</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="cta js-next">Quero meu diagnóstico</button>
         </div>
-    </section>
+      </section>
 
-    <!-- Prova Social -->
-    <section class="py-16 px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-12">Quem já aplicou, aprovou!</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-md italic text-gray-700">
-                    "Meu Golden Retriever era um furacão. Em 4 dias ele já estava obedecendo o 'fica'. Valeu cada centavo!"
-                    <p class="mt-4 font-bold not-italic text-blue-900">— Mariana S.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md italic text-gray-700">
-                    "O guia de xixi e cocô salvou meu apartamento. Nunca imaginei que seria tão simples."
-                    <p class="mt-4 font-bold not-italic text-blue-900">— João Pedro</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md italic text-gray-700">
-                    "Dicas práticas e direto ao ponto. Recomendo para todos que têm um filhote em casa."
-                    <p class="mt-4 font-bold not-italic text-blue-900">— Cláudia F.</p>
-                </div>
+      <section class="screen question-screen" data-step="2" data-question="momento" data-required="1" data-multi="false">
+        <div class="stack">
+          <div class="content-card">
+            <div class="question-top">
+              <div class="mini">Antes de liberar seu diagnóstico personalizado, preciso entender seu momento:</div>
+              <h2>Em que fase da sua vida amorosa você está agora?</h2>
             </div>
+            <div class="options">
+              <button class="option" data-value="relacao">
+                <span class="label">💍 Estou em uma relação e quero reacender a conexão</span>
+                <span class="check"></span>
+              </button>
+              <button class="option" data-value="romance">
+                <span class="label">💘 Estou vivendo algo promissor, mas ainda instável</span>
+                <span class="check"></span>
+              </button>
+              <button class="option" data-value="solteira">
+                <span class="label">💃 Estou solteira e quero me tornar inesquecível</span>
+                <span class="check"></span>
+              </button>
+              <button class="option" data-value="complicada">
+                <span class="label">🧩 Minha situação é delicada e preciso recuperar meu poder</span>
+                <span class="check"></span>
+              </button>
+            </div>
+            <div class="continue-bar"><button class="cta js-continue" disabled>Continuar</button></div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Oferta -->
-    <section id="checkout" class="py-20 px-6 bg-gray-900 text-white">
-        <div class="max-w-lg mx-auto bg-white text-gray-900 p-8 rounded-3xl shadow-2xl relative border-4 border-yellow-400">
-            <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-yellow-400 text-gray-900 px-6 py-2 rounded-full font-bold uppercase text-sm">
-                Melhor Oferta do Ano
+      <section class="screen question-screen" data-step="3" data-question="nivel" data-required="1" data-multi="false">
+        <div class="stack">
+          <div class="content-card">
+            <div class="question-top">
+              <h2>Na intimidade, como você se percebe hoje?</h2>
             </div>
-            <div class="text-center mt-4">
-                <h3 class="text-2xl font-bold uppercase mb-2">E-book Cão Educado</h3>
-                <p class="text-gray-500 line-through text-lg">De R$ 97,00</p>
-                <div class="flex items-center justify-center space-x-2 my-2">
-                    <span class="text-xl font-medium">Por apenas</span>
-                    <span class="text-5xl font-extrabold text-green-600 italic">R$ 27</span>
-                </div>
-                <p class="text-sm font-bold text-gray-600 mb-8">Ou 3x de R$ 9,50*</p>
-                
-                <div class="space-y-4 mb-10 text-left">
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
-                        <span>Acesso Vitalício ao Guia</span>
-                    </div>
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
-                        <span>Bônus: 10 Petiscos Saudáveis Caseiros</span>
-                    </div>
-                    <div class="flex items-center">
-                        <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
-                        <span>Garantia de Satisfação de 7 Dias</span>
-                    </div>
-                </div>
-
-                <a href="SEU_LINK_DE_CHECKOUT" class="cta-pulse block w-full bg-green-500 hover:bg-green-600 text-white font-black py-5 rounded-xl text-xl shadow-lg transition">
-                    SIM! QUERO O E-BOOK AGORA
-                </a>
-                
-                <div class="mt-6 flex flex-wrap justify-center gap-2">
-                    <img src="https://img.icons8.com/color/48/000000/visa.png" class="h-6" alt="Visa">
-                    <img src="https://img.icons8.com/color/48/000000/mastercard.png" class="h-6" alt="Master">
-                    <img src="https://img.icons8.com/color/48/000000/pix.png" class="h-6" alt="Pix">
-                </div>
+            <div class="options">
+              <button class="option" data-value="iniciante">
+                <span class="label">🙈 Sou iniciante e preciso de direção clara</span>
+                <span class="check"></span>
+              </button>
+              <button class="option" data-value="insegura">
+                <span class="label">😶 Me viro, mas ainda me sinto insegura em momentos-chave</span>
+                <span class="check"></span>
+              </button>
+              <button class="option" data-value="boa_falta_variedade">
+                <span class="label">😉 Faço bem o básico, mas me falta repertório e impacto</span>
+                <span class="check"></span>
+              </button>
+              <button class="option" data-value="boa_quero_novas">
+                <span class="label">😈 Já sou boa, mas quero técnicas mais marcantes</span>
+                <span class="check"></span>
+              </button>
             </div>
+            <div class="continue-bar"><button class="cta js-continue" disabled>Continuar</button></div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- Garantia -->
-    <section class="py-16 px-6 bg-white border-t border-gray-100">
-        <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-12">
-            <div class="w-40 flex-shrink-0">
-                <img src="https://img.icons8.com/fluency/144/000000/guarantee.png" alt="Selo de Garantia">
+      <section class="screen question-screen" data-step="4" data-question="dificuldade" data-required="1" data-multi="false">
+        <div class="stack">
+          <div class="content-card">
+            <div class="question-top">
+              <h2>Qual é sua maior trava hoje na hora H?</h2>
+            </div>
+            <div class="options">
+              <button class="option" data-value="surpreender">
+                <span class="label">🙂 Não consigo surpreender de verdade</span>
+                <span class="check"></span>
+              </button>
+              <button class="option" data-value="vergonha">
+                <span class="label">😳 Tenho vergonha de experimentar e acabo indo no automático</span>
+                <span class="check"></span>
+              </button>
+              <button class="option" data-value="ritmo">
+                <span class="label">🥱 Perco o ritmo, a presença ou a segurança durante o encontro</span>
+                <span class="check"></span>
+              </button>
+              <button class="option" data-value="variedade">
+                <span class="label">📍 Falta variedade, tensão e construção de desejo</span>
+                <span class="check"></span>
+              </button>
+            </div>
+            <div class="continue-bar"><button class="cta js-continue" disabled>Continuar</button></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen question-screen" data-step="5" data-question="resultado_desejado" data-required="1" data-multi="true">
+        <div class="stack">
+          <div class="content-card">
+            <div class="question-top">
+              <h2>O que você mais quer sentir depois de elevar sua presença íntima?</h2>
+              <div class="hint">Você pode marcar mais de uma opção</div>
+            </div>
+            <div class="options">
+              <button class="option" data-value="controle_emocional">
+                <span class="label">🔥 Ver ele totalmente envolvido, atento e entregue</span>
+                <span class="check"></span>
+              </button>
+              <button class="option" data-value="prazer_intenso">
+                <span class="label">💦 Criar encontros intensos e memoráveis</span>
+                <span class="check"></span>
+              </button>
+              <button class="option" data-value="inesquecivel">
+                <span class="label">😈 Sentir que ele não vai me esquecer facilmente</span>
+                <span class="check"></span>
+              </button>
+              <button class="option" data-value="poder_feminino">
+                <span class="label">👑 Recuperar poder, confiança e presença feminina</span>
+                <span class="check"></span>
+              </button>
+              <button class="option" data-value="ser_melhor">
+                <span class="label">💎 Ouvir que comigo foi diferente de tudo</span>
+                <span class="check"></span>
+              </button>
+            </div>
+            <div class="continue-bar"><button class="cta js-continue" disabled>Continuar</button></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" data-step="6">
+        <div class="stack">
+          <div class="review-card">
+            <div class="question-top">
+              <h2>Enquanto seu perfil é analisado, veja o que outras mulheres perceberam ao mudar postura, repertório e segurança:</h2>
+            </div>
+            <div class="testi">
+              <div class="testi-item">
+                <div class="stars">★★★★★</div>
+                <div class="name">Mercedes Gimenez</div>
+                <div class="handle">@mercedes.gimez</div>
+                <div class="quote">“Eu achava que precisava me esforçar demais. Quando aprendi a conduzir melhor o clima, tudo mudou. Me senti mais segura, mais desejada e muito mais no controle.”</div>
+              </div>
+              <div class="testi-item">
+                <div class="stars">★★★★★</div>
+                <div class="name">Valentina Velazco</div>
+                <div class="handle">@valennvelazco</div>
+                <div class="quote">“Não foi sobre virar outra pessoa. Foi sobre revelar uma versão minha que eu nunca tinha acessado. E isso fez diferença na forma como ele passou a me ver.”</div>
+              </div>
+              <div class="testi-item">
+                <div class="stars">★★★★★</div>
+                <div class="name">Sol Nappa</div>
+                <div class="handle">@solnappa</div>
+                <div class="quote">“Eu precisava de repertório, mas também de confiança. Depois que entendi a lógica certa, meu magnetismo ficou muito mais forte.”</div>
+              </div>
+            </div>
+          </div>
+          <button class="cta js-next">Continuar</button>
+        </div>
+      </section>
+
+      <section class="screen" data-step="7">
+        <div class="stack">
+          <div class="review-card">
+            <div class="image-panel"></div>
+            <div class="mini-strip">Quando você ignora esse ajuste, outra mulher mais segura ocupa esse espaço</div>
+            <div class="impact">Enquanto você tenta não errar, outra mulher aprende a ser <strong>lembrada</strong> no momento certo.</div>
+          </div>
+          <button class="cta js-next">Entendi, quero avançar</button>
+        </div>
+      </section>
+
+      <section class="screen" data-step="8">
+        <div class="stack">
+          <div class="review-card">
+            <div class="question-top">
+              <h2>Sua vida íntima pode mudar muito quando você domina a combinação certa de presença, condução e intensidade.</h2>
+            </div>
+            <div class="list-checks">
+              <div class="check-row"><span>✅</span><span>Descobrir o que aumenta a conexão e o prazer no seu corpo e na dinâmica do encontro.</span></div>
+              <div class="check-row"><span>✅</span><span>Reduzir insegurança e entrar mais confiante, mais desejada e mais confortável em si.</span></div>
+              <div class="check-row"><span>✅</span><span>Aprender a construir tensão e memória emocional sem parecer forçada.</span></div>
+            </div>
+            <div class="soft-card">Quando a mulher domina o momento com naturalidade, a lembrança que fica não é só física. É emocional.</div>
+          </div>
+          <button class="cta js-next">Continuar</button>
+        </div>
+      </section>
+
+      <section class="screen question-screen" data-step="9" data-question="frustracoes" data-required="1" data-multi="true">
+        <div class="stack">
+          <div class="content-card">
+            <div class="question-top">
+              <h2>Qual dessas frustrações mais mexe com você hoje?</h2>
+              <div class="hint">Marque uma ou mais</div>
+            </div>
+            <div class="options">
+              <button class="option" data-value="nao_finaliza">
+                <span class="label">☐ Me sinto insegura porque não consigo criar um encontro realmente marcante</span>
+                <span class="check"></span>
+              </button>
+              <button class="option" data-value="pensa_outra">
+                <span class="label">☐ Tenho medo de não ser a lembrança mais forte na mente dele</span>
+                <span class="check"></span>
+              </button>
+              <button class="option" data-value="distante">
+                <span class="label">☐ Sinto a relação fria, distante ou previsível demais</span>
+                <span class="check"></span>
+              </button>
+              <button class="option" data-value="invisivel">
+                <span class="label">☐ Nunca me sinto realmente inesquecível</span>
+                <span class="check"></span>
+              </button>
+              <button class="option" data-value="nao_busca">
+                <span class="label">☐ Às vezes sinto que ele até gosta... mas não me prioriza</span>
+                <span class="check"></span>
+              </button>
+            </div>
+            <div class="continue-bar"><button class="cta js-continue" disabled>Continuar</button></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen question-screen" data-step="10" data-question="ultima_vez" data-required="1" data-multi="false">
+        <div class="stack">
+          <div class="content-card">
+            <div class="question-top">
+              <h2>Quando foi a última vez que você sentiu um homem realmente fascinado por você?</h2>
+            </div>
+            <div class="options">
+              <button class="option" data-value="faz_tempo">
+                <span class="label">⭕ Faz bastante tempo</span>
+                <span class="check"></span>
+              </button>
+              <button class="option" data-value="nao_suficiente">
+                <span class="label">⭕ Sinto que ainda não consegui provocar isso de verdade</span>
+                <span class="check"></span>
+              </button>
+              <button class="option" data-value="recente_melhor">
+                <span class="label">⭕ Aconteceu, mas eu sei que poderia ter sido mais intenso</span>
+                <span class="check"></span>
+              </button>
+              <button class="option" data-value="nunca">
+                <span class="label">⭕ Nunca vivi isso da forma que eu gostaria</span>
+                <span class="check"></span>
+              </button>
+            </div>
+            <div class="continue-bar"><button class="cta js-continue" disabled>Continuar</button></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" data-step="11">
+        <div class="stack">
+          <div class="review-card">
+            <div class="mini-strip">3 mudanças que podem começar desde a primeira aplicação</div>
+            <div class="analysis">
+              <h3>1. Mais entrega, menos piloto automático</h3>
+              <p>Quando o clima é construído da forma certa, a atenção e a intensidade do encontro sobem naturalmente.</p>
+            </div>
+            <div class="analysis">
+              <h3>2. Mais carinho e mais presença fora da cama</h3>
+              <p>Conexão íntima bem conduzida costuma transbordar para a forma como ele procura, valoriza e se aproxima.</p>
+            </div>
+            <div class="analysis">
+              <h3>3. Mais poder emocional para você</h3>
+              <p>Ao parar de duvidar tanto de si, sua autoconfiança muda postura, olhar, energia e presença.</p>
+            </div>
+          </div>
+          <button class="cta js-next">Quero ver meu resultado</button>
+        </div>
+      </section>
+
+      <section class="screen" data-step="12">
+        <div class="stack">
+          <div class="result-card">
+            <div class="question-top">
+              <div class="mini">Diagnóstico concluído</div>
+              <h2>Seu perfil mostra uma mulher com <strong style="color:#ff5d69;">alto potencial magnético</strong>, mas com bloqueios que estão impedindo seu brilho completo.</h2>
+            </div>
+            <div class="score-grid">
+              <div class="score-box"><div class="n" id="scoreConfidence">68%</div><div class="t">Presença</div></div>
+              <div class="score-box"><div class="n" id="scoreTechnique">52%</div><div class="t">Repertório</div></div>
+              <div class="score-box"><div class="n" id="scoreImpact">61%</div><div class="t">Impacto</div></div>
+            </div>
+            <div class="analysis">
+              <div class="label">Leitura personalizada</div>
+              <h3 id="profileTitle">Você não precisa se tornar outra mulher. Precisa ativar a versão que sabe conduzir.</h3>
+              <p id="profileText">Pelo seu quiz, existe desejo, sensibilidade e potência. O que falta é estrutura: variedade, confiança, tensão e condução. Quando isso entra no lugar, sua energia muda e ele percebe.</p>
+            </div>
+            <div class="list-checks" id="profileBullets">
+              <div class="check-row"><span>✅</span><span>Você responde melhor a um método prático, direto e sem enrolação.</span></div>
+              <div class="check-row"><span>✅</span><span>Seu maior salto virá quando você unir repertório com autoconfiança.</span></div>
+              <div class="check-row"><span>✅</span><span>Seu perfil tende a evoluir rápido quando sabe exatamente o que fazer e em que ordem.</span></div>
+            </div>
+          </div>
+          <button class="cta js-next">Liberar minha condição especial</button>
+        </div>
+      </section>
+
+      <section class="screen" data-step="13">
+        <div class="stack">
+          <div class="offer-card">
+            <div class="question-top">
+              <h2>Seu acesso especial foi liberado</h2>
             </div>
             <div>
-                <h2 class="text-2xl font-bold mb-4">Garantia Incondicional de 7 Dias</h2>
-                <p class="text-gray-600 leading-relaxed">
-                    Você tem 7 dias inteiros para testar meu método. Se por qualquer motivo você achar que não é para você ou seu cão não mostrar progresso, eu devolvo 100% do seu dinheiro. Sem
+              <div class="new-price-title">Acesso ao método <strong>Posições Enlouquecedoras</strong> + bônus de apoio prático</div>
+            </div>
+            <div class="price-box">
+              <div class="price-top">Desconto estratégico aplicado</div>
+              <div style="margin-top:10px; font-size:18px;">De <span class="old-price">$97,00</span></div>
+            </div>
+            <div class="analysis" style="text-align:center;">
+              <h3 style="font-size:32px;">Hoje: <span class="highlight-green">apenas $7 dólares</span></h3>
+              <p>Você está recebendo uma condição agressiva para entrar agora, testar o método e sentir a diferença na prática.</p>
+            </div>
+            <div><span class="emphasis">Aja agora no botão abaixo e aproveite essa condição antes que saia do ar.</span></div>
+            <button class="cta" onclick="scrollToOfferDetails()">Quero meu acesso</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" data-step="14">
+        <div class="stack">
+          <div class="offer-card" id="offerDetails">
+            <div class="image-panel" style="height:280px;"></div>
+            <div class="question-top" style="text-align:left; margin-bottom:0;">
+              <h2>Dentro do manual, você recebe:</h2>
+            </div>
+            <div class="bonus-list">
+              <div class="bonus-item">
+                <div>✦</div>
+                <div>
+                  <strong>As 5 Posições Enlouquecedoras</strong>
+                  <p>Um repertório prático para sair da repetição, aumentar intensidade e criar uma experiência mais marcante.</p>
+                </div>
+              </div>
+              <div class="bonus-item">
+                <div>✦</div>
+                <div>
+                  <strong>Frases de condução e química</strong>
+                  <p>Exemplos do que dizer antes, durante e depois para reforçar tensão, segurança e conexão emocional.</p>
+                </div>
+              </div>
+              <div class="bonus-item">
+                <div>✦</div>
+                <div>
+                  <strong>Aulas práticas com aplicação guiada</strong>
+                  <p>Conteúdo direto ao ponto para entender execução, ritmo, clima e presença sem ficar perdida.</p>
+                </div>
+              </div>
+              <div class="bonus-item">
+                <div>✦</div>
+                <div>
+                  <strong>Técnicas de domínio silencioso</strong>
+                  <p>Como conduzir melhor a experiência com naturalidade, feminilidade e confiança.</p>
+                </div>
+              </div>
+            </div>
+            <div class="danger-box">
+              <h3>Se você continuar deixando isso para depois, outra mulher mais segura aprende antes.</h3>
+              <p>Enquanto você tenta acertar no improviso, outra mulher entra com presença, repertório e confiança.</p>
+            </div>
+            <button class="cta js-next">Quero ver os bônus</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" data-step="15">
+        <div class="stack">
+          <div class="offer-card">
+            <div class="question-top" style="text-align:left; margin-bottom:0;">
+              <h2>+ bônus que aceleram seus resultados</h2>
+            </div>
+            <div class="bonus-list">
+              <div class="bonus-item">
+                <div>🎁</div>
+                <div>
+                  <strong>Frases que aumentam tensão e desejo</strong>
+                  <p>Um pacote de falas para usar com mais intenção e segurança.</p>
+                </div>
+              </div>
+              <div class="bonus-item">
+                <div>🎁</div>
+                <div>
+                  <strong>Técnicas de oralidade mais estratégica</strong>
+                  <p>Conduções práticas para elevar experiência, confiança e resposta emocional.</p>
+                </div>
+              </div>
+              <div class="bonus-item">
+                <div>🎁</div>
+                <div>
+                  <strong>Guia de conforto, ritmo e entrega</strong>
+                  <p>Para sair da insegurança e aplicar com mais fluidez e presença.</p>
+                </div>
+              </div>
+              <div class="bonus-item">
+                <div>🎁</div>
+                <div>
+                  <strong>Perfumes, clima e gatilhos sensoriais</strong>
+                  <p>Detalhes que ampliam a memória emocional do encontro.</p>
+                </div>
+              </div>
+              <div class="bonus-item">
+                <div>🎁</div>
+                <div>
+                  <strong>Grupo VIP com suporte e troca</strong>
+                  <p>Um ambiente de acompanhamento para acelerar confiança e aplicação.</p>
+                </div>
+              </div>
+            </div>
+            <button class="cta js-next">Quero agora</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" data-step="16">
+        <div class="stack">
+          <div class="offer-card">
+            <div class="image-panel" style="height:250px;"></div>
+            <div class="mini-strip">A verdade que quase ninguém te fala</div>
+            <div class="list-checks">
+              <div class="check-row"><span>💄</span><span>Homens esquecem o que é comum. Eles lembram do que mexe com a mente, com o corpo e com a emoção.</span></div>
+              <div class="check-row"><span>💄</span><span>Não basta ser “boa”. O que marca é combinação de segurança, condução e diferença percebida.</span></div>
+              <div class="check-row"><span>💄</span><span>Enquanto você pede atenção, outras mulheres aprendem a provocar atenção naturalmente.</span></div>
+            </div>
+            <div class="impact">Aplique esse método agora e se torne a mulher que ele associa a <strong>desejo, intensidade e lembrança.</strong></div>
+          </div>
+          <button class="cta js-next">Quero me tornar inesquecível</button>
+        </div>
+      </section>
+
+      <section class="screen" data-step="17">
+        <div class="stack">
+          <div class="offer-card guarantee">
+            <div class="seal">
+              <div class="seal-inner">GARANTIA <span>7</span> DIAS</div>
+            </div>
+            <div class="question-top" style="margin-bottom:0;">
+              <h2>Risco zero para testar seu novo nível de presença</h2>
+            </div>
+            <p class="final-note">Você tem 7 dias completos para acessar, assistir, aplicar e sentir se o método entrega o que promete para você.</p>
+            <p class="final-note">Se não fizer sentido, basta pedir reembolso dentro do prazo e você recupera seu investimento.</p>
+            <button class="cta" onclick="checkoutAction()">Quero provar sem riscos</button>
+            <div class="footer-space"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const screens = Array.from(document.querySelectorAll('.screen'));
+    const progressBar = document.getElementById('progressBar');
+    const progressLabel = document.getElementById('progressLabel');
+    const progressValue = document.getElementById('progressValue');
+    const answers = {};
+    let current = 0;
+
+    const questionScreens = Array.from(document.querySelectorAll('.question-screen'));
+
+    const totalStepsForProgress = screens.length - 1;
+
+    function updateProgress() {
+      const percent = Math.max(4, Math.round((current / totalStepsForProgress) * 100));
+      progressBar.style.width = percent + '%';
+      progressValue.textContent = current >= 2 ? percent + '%' : '';
+      if (current >= 12) {
+        progressLabel.textContent = 'Análise concluída';
+      } else if (current >= 6) {
+        progressLabel.textContent = 'Preparando seu diagnóstico';
+      } else if (current >= 2) {
+        progressLabel.textContent = 'Montando seu perfil';
+      } else {
+        progressLabel.textContent = '';
+      }
+    }
+
+    function showStep(index) {
+      current = Math.max(0, Math.min(index, screens.length - 1));
+      screens.forEach((screen, i) => screen.classList.toggle('active', i === current));
+      updateProgress();
+      if (current === 12) buildResult();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goNext() {
+      showStep(current + 1);
+    }
+
+    function goPrev() {
+      showStep(current - 1);
+    }
+
+    document.querySelectorAll('.js-next').forEach(btn => {
+      btn.addEventListener('click', goNext);
+    });
+
+    questionScreens.forEach(screen => {
+      const isMulti = screen.dataset.multi === 'true';
+      const required = Number(screen.dataset.required || 1);
+      const questionKey = screen.dataset.question;
+      const continueBtn = screen.querySelector('.js-continue');
+      const options = Array.from(screen.querySelectorAll('.option'));
+
+      function getSelected() {
+        return options.filter(o => o.classList.contains('selected')).map(o => o.dataset.value);
+      }
+
+      function syncButton() {
+        continueBtn.disabled = getSelected().length < required;
+      }
+
+      options.forEach(option => {
+        option.addEventListener('click', () => {
+          if (isMulti) {
+            option.classList.toggle('selected');
+          } else {
+            options.forEach(o => o.classList.remove('selected'));
+            option.classList.add('selected');
+          }
+          const selected = getSelected();
+          answers[questionKey] = isMulti ? selected : (selected[0] || null);
+          syncButton();
+        });
+      });
+
+      continueBtn.addEventListener('click', () => {
+        const selected = getSelected();
+        answers[questionKey] = isMulti ? selected : (selected[0] || null);
+        goNext();
+      });
+
+      syncButton();
+    });
+
+    function scoreFromAnswers() {
+      let confidence = 66;
+      let technique = 58;
+      let impact = 61;
+
+      switch (answers.nivel) {
+        case 'iniciante': confidence -= 14; technique -= 18; impact -= 12; break;
+        case 'insegura': confidence -= 10; technique -= 8; impact -= 9; break;
+        case 'boa_falta_variedade': technique -= 10; impact -= 8; break;
+        case 'boa_quero_novas': confidence += 4; technique += 6; impact += 4; break;
+      }
+
+      switch (answers.dificuldade) {
+        case 'surpreender': impact -= 14; technique -= 8; break;
+        case 'vergonha': confidence -= 15; impact -= 7; break;
+        case 'ritmo': confidence -= 10; impact -= 8; break;
+        case 'variedade': technique -= 14; impact -= 6; break;
+      }
+
+      const desejos = answers.resultado_desejado || [];
+      if (desejos.includes('poder_feminino')) confidence -= 4;
+      if (desejos.includes('controle_emocional')) impact += 2;
+      if (desejos.includes('ser_melhor')) impact += 3;
+      if (desejos.includes('prazer_intenso')) technique += 2;
+
+      const fr = answers.frustracoes || [];
+      if (fr.includes('invisivel')) impact -= 8;
+      if (fr.includes('distante')) confidence -= 5;
+      if (fr.includes('nao_finaliza')) technique -= 6;
+      if (fr.includes('nao_busca')) impact -= 5;
+      if (fr.includes('pensa_outra')) confidence -= 5;
+
+      switch (answers.ultima_vez) {
+        case 'faz_tempo': confidence -= 6; impact -= 5; break;
+        case 'nao_suficiente': confidence -= 8; impact -= 7; break;
+        case 'recente_melhor': technique -= 3; impact -= 2; break;
+        case 'nunca': confidence -= 10; impact -= 8; technique -= 4; break;
+      }
+
+      confidence = Math.max(34, Math.min(94, confidence));
+      technique = Math.max(28, Math.min(95, technique));
+      impact = Math.max(30, Math.min(96, impact));
+
+      return { confidence, technique, impact };
+    }
+
+    function buildResult() {
+      const scores = scoreFromAnswers();
+      document.getElementById('scoreConfidence').textContent = scores.confidence + '%';
+      document.getElementById('scoreTechnique').textContent = scores.technique + '%';
+      document.getElementById('scoreImpact').textContent = scores.impact + '%';
+
+      const titleEl = document.getElementById('profileTitle');
+      const textEl = document.getElementById('profileText');
+      const bulletsEl = document.getElementById('profileBullets');
+
+      const momento = answers.momento;
+      const nivel = answers.nivel;
+      const dificuldade = answers.dificuldade;
+
+      let title = 'Você não precisa se tornar outra mulher. Precisa ativar a versão que sabe conduzir.';
+      let text = 'Pelo seu quiz, existe desejo, sensibilidade e potência. O que falta é estrutura: variedade, confiança, tensão e condução. Quando isso entra no lugar, sua energia muda e ele percebe.';
+      let bullets = [
+        'Você responde melhor a um método prático, direto e sem enrolação.',
+        'Seu maior salto virá quando você unir repertório com autoconfiança.',
+        'Seu perfil tende a evoluir rápido quando sabe exatamente o que fazer e em que ordem.'
+      ];
+
+      if (momento === 'relacao') {
+        title = 'Seu perfil aponta desejo de reconexão: você quer voltar a ser sentida, lembrada e priorizada.';
+        text = 'Você não busca apenas novidade. Busca reacender presença, intensidade e aquela sensação de “ele me quer de novo”. Seu diagnóstico mostra que isso é possível, desde que você saia da previsibilidade e recupere condução.';
+        bullets = [
+          'Seu maior risco hoje não é falta de amor. É a rotina roubar o impacto da sua presença.',
+          'Pequenos ajustes de repertório e clima podem mudar a forma como ele volta a te enxergar.',
+          'Seu perfil cresce muito quando você aprende a quebrar o padrão sem perder naturalidade.'
+        ];
+      }
+
+      if (momento === 'solteira') {
+        title = 'Seu perfil mostra fome de se tornar inesquecível — e isso pode virar sua maior vantagem.';
+        text = 'Você quer mais do que atenção. Quer diferença percebida. Seu resultado mostra que existe magnetismo bruto aí, só faltando lapidação estratégica para transformar atração em impacto emocional.';
+        bullets = [
+          'Você tem perfil para se destacar rápido quando aumenta segurança e variedade.',
+          'Seu jogo não precisa ser exagerado. Precisa ser mais intencional.',
+          'Com o método certo, sua presença tende a parecer muito mais rara e valiosa.'
+        ];
+      }
+
+      if (nivel === 'iniciante' || nivel === 'insegura') {
+        title = 'Seu maior bloqueio hoje não é falta de potencial. É excesso de dúvida na hora de conduzir.';
+        text = 'Quando a insegurança fala mais alto, você reduz sua intensidade, se censura e acaba entregando menos do que poderia. O bom é que isso melhora muito quando você recebe um mapa claro e aplicável.';
+        bullets = [
+          'Você não precisa adivinhar. Precisa de um passo a passo seguro.',
+          'Sua evolução virá mais rápido do que imagina quando parar de improvisar tudo.',
+          'Seu perfil tende a ganhar presença logo que aprende a condução certa.'
+        ];
+      }
+
+      if (dificuldade === 'variedade' || dificuldade === 'surpreender') {
+        title = 'Seu diagnóstico mostra uma mulher interessante, mas ainda previsível demais nos momentos decisivos.';
+        text = 'O problema não é falta de valor. É falta de contraste. Quando não existe surpresa, tensão e construção, a memória emocional cai. E isso pode ser ajustado com repertório certo.';
+        bullets = [
+          'Seu próximo nível depende mais de variedade inteligente do que de esforço bruto.',
+          'Você precisa aprender a criar expectativa, ritmo e lembrança.',
+          'Seu perfil melhora muito quando deixa de repetir sempre o mesmo tipo de encontro.'
+        ];
+      }
+
+      titleEl.textContent = title;
+      textEl.textContent = text;
+      bulletsEl.innerHTML = bullets.map(item => `<div class="check-row"><span>✅</span><span>${item}</span></div>`).join('');
+    }
+
+    function scrollToOfferDetails() {
+      goNext();
+    }
+
+    function checkoutAction() {
+      alert('Conecte este botão ao seu checkout, por exemplo: Hotmart, Kiwify, Eduzz ou outra plataforma.');
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') goNext();
+      if (e.key === 'ArrowLeft' && current > 0) goPrev();
+    });
+
+    updateProgress();
+  </script>
+</body>
+</html>
+
+
